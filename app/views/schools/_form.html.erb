@@ -1,0 +1,13 @@
+<%= form_for @school do |f| %>
+    <div class="existingNestedResources">
+        <%= f.fields_for :whitelisted_emails do |builder| %>
+            <%= render "whitelisted_email_fields", :f => builder %>
+        <% end %>
+        <%= f.fields_for :whitelisted_domain_for_students do |builder| %>
+            <%= render "whitelisted_domain_for_student_fields", :f => builder %>
+        <% end %>
+    </div>
+    <a href="#" onclick="<%= link_to_add_fields f, :whitelisted_domain_for_students %>">Add Domain</a>
+    <a href="#" onclick="<%= link_to_add_fields f, :whitelisted_emails %>">Add Email</a>
+    <p><%= f.submit "Submit" %></p>
+<% end %>
