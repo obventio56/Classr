@@ -17,3 +17,7 @@
 .existingNestedResources .fields {
     display:none;
 }
+
+.cloneable {
+    display:none;
+}

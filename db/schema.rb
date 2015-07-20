@@ -11,70 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716214610) do
+ActiveRecord::Schema.define(version: 20150720024039) do
 
-  create_table "counselors", force: :cascade do |t|
-    t.string   "name"
+  create_table "roles", force: :cascade do |t|
+    t.string   "role_type"
+    t.integer  "user_id"
     t.integer  "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "principals", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "school_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "visibility"
   end
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "principal_id"
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "role_id"
+    t.string   "visibility"
   end
 
-  create_table "teachers", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "school_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  add_index "schools", ["role_id"], name: "index_schools_on_role_id"
+
+  create_table "tests", force: :cascade do |t|
+    t.text     "html"
+    t.text     "questions_and_answers"
+    t.integer  "role_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
+
+  add_index "tests", ["role_id"], name: "index_tests_on_role_id"
 
   create_table "users", force: :cascade do |t|
-    t.integer  "functionality_id"
-    t.string   "functionality_type"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "name"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.integer  "principal_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
-  create_table "whitelisted_domain_for_students", force: :cascade do |t|
-    t.string   "domain"
+  create_table "white_list_entries", force: :cascade do |t|
+    t.string   "entry"
+    t.string   "entry_type"
+    t.string   "for_account_type"
     t.integer  "school_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.boolean  "created_status"
+    t.integer  "creator_role_id"
   end
 
-  create_table "whitelisted_emails", force: :cascade do |t|
-    t.string   "email"
-    t.integer  "school_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "account_type"
-    t.boolean  "user_created"
-  end
+  add_index "white_list_entries", ["school_id"], name: "index_white_list_entries_on_school_id"
 
 end

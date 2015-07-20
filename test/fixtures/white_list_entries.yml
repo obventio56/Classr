@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entry: MyString
+  entry_type: MyString
+  belongs_to: 
+
+two:
+  entry: MyString
+  entry_type: MyString
+  belongs_to: 

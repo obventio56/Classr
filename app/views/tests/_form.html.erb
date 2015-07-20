@@ -1,0 +1,10 @@
+<%= form_for(@test) do |f| %>
+
+    <%= f.label :html, 'HTML: ' %>
+    <%= f.text_area :html %>
+
+    <%= f.label :questions_and_answers, 'JSON: ' %>
+    <%= f.text_area :questions_and_answers %>
+
+    <%= f.submit 'Save' %>
+<% end %>

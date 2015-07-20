@@ -17,28 +17,25 @@
 
 
 function add_fields(link, association, content) {
-    var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g");
-    $('.edit_school').append(content.replace(regexp, new_id));
+
+    $(link).parent().before(content.replace(regexp, new_id));
+}
+function remove_fields(link) {
+    $(link).prev("input[type=hidden]").val("1");
+    $(link).closest(".fields").hide();
 }
 
-function add_destroy_fields(contextString) {
-    var contextArray = contextString.split('-');
-
-    var formSelector = contextArray.shift();
-    var fieldName = contextArray[0] + '[' + contextArray.slice(1, contextArray.length).join('][') + ']';
-    var fieldId = contextArray.join('_');
-
-    $(formSelector).append('<div class="fields"><input type="hidden" name="' + fieldName + '[_destroy]' + '" id="' + fieldId  + '__destroy' + '" value="1"/><input type="hidden" name="' + fieldName + '[id]' + '" id="' + fieldId  + '_id' + '" value="' + contextArray.pop() + '"/></div>')
-}
-
-function display_edit_fields(contextString) {
-    var modelId = contextString.split('-').pop();
-    $('input[type=hidden][value=' + modelId + ']').prev().css('display', 'inline');
-
-}
 
 $(document).ready( function(){
+
+    $('.add_fields').click( function() {
+        var association = $(this).data('add-what')
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g");
+        cloneableHTML = $('.' + association + '_fields').html().replace(regexp, new_id);
+        $('.' + association + '_list').append(cloneableHTML)
+    });
+
     $('.destroy').on('click', function() {
         var $modelDisplay = $(this).closest('.model_display');
         add_destroy_fields($modelDisplay.data('path-in-params'));

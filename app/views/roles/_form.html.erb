@@ -1,0 +1,18 @@
+<%= form_for @role do |f| %>
+    <%= f.hidden_field :role_type, :value => 'principal'%>
+    <%= f.fields_for 'user_attributes' do |builder| %>
+        <%= builder.label :name, 'Name' %>
+        <%= builder.text_field :name%>
+        <%= builder.label :email, "Email" %>
+        <%= builder.text_field :email%>
+        <%= builder.label :password, "Password" %>
+        <%= builder.password_field :password%>
+        <%= builder.label :password_confirmation, "Confimation" %>
+        <%= builder.password_field :password_confirmation%>
+    <% end %>
+    <%= f.fields_for 'administered_school_attributes' do |builder| %>
+        <%= builder.label :name, 'School Name' %>
+        <%= builder.text_field :name%>
+    <% end %>
+    <%= f.submit "Submit" %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= form_for @user do |f| %>
+
+    <%= render partial: 'fields_for_existing_roles', collection: @roles %>
+
+<% end %>

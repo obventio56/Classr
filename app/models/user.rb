@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
+  has_many :roles
 
 
   before_save { self.email = email.downcase }
@@ -30,4 +31,15 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
+  def self.current_role
+    return current_role
+  end
+
+  def self.current_user?
+    if self.user_id == current_user.id
+      return true
+    else
+      return false
+    end
+  end
 end
