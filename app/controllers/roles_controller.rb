@@ -1,17 +1,22 @@
 class RolesController < ApplicationController
 
+  def show
+    @role = Role.find(params[:id])
+    @partial = @role.role_type
+  end
+
   def new
     @role = Role.new
     if params[:role_type] == 'principal'
       @partial = 'new_principal'
     else
-      #TO DO - Add new_role partial
       @partial = 'new_role'
     end
   end
 
   def create
     @role = Role.new(role_params)
+    @role.administered_school.principal = @role
     if @role.save
       log_in @role.user
       cookies[:current_role_id] = @role.id

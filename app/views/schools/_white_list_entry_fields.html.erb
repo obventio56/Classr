@@ -1,0 +1,17 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.label :entry %>
+    <br/>
+    <%= f.text_field :entry %>
+  </div>
+  <div class="field">
+    <%= f.label :for_account_type, 'Account Type:' %><br>
+    <%= f.label :for_account_type, 'Student' %>
+    <%= f.radio_button :for_account_type, 'student' %>
+    <%= f.label :for_account_type, 'Teacher' %>
+    <%= f.radio_button :for_account_type, 'teacher' %>
+    <%= f.label :for_account_type, 'Counselor' %>
+    <%= f.radio_button :for_account_type, 'counselor' %>
+  </div>
+  <%= link_to_remove_association "Remove Entry", f %>
+</div>

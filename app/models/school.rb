@@ -3,13 +3,12 @@ class School < ActiveRecord::Base
   has_many :roles, dependent: :destroy
   has_many :white_list_entries, dependent: :destroy
 
-  accepts_nested_attributes_for :white_list_entries
+  accepts_nested_attributes_for :white_list_entries, :allow_destroy => true
 
   before_create :set_default_visiblity
+  before_create :set_default_visiblity
 
-  validates :name, presence: true,
-           uniqueness: { case_sensitive: false }
-  validates :role_id, presence: true
+  validates :name, presence: true
   validate :principal_is_of_role_type_principal
 
   def principal_is_of_role_type_principal
@@ -19,6 +18,6 @@ class School < ActiveRecord::Base
   end
 
   def set_default_visiblity
-    self.visibility = 'site wide'
+    self.visibility = 'site'
   end
 end

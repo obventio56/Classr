@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 20150722221618) do
     t.integer  "school_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.boolean  "created_status"
-    t.integer  "creator_role_id"
   end
 
   add_index "white_list_entries", ["school_id"], name: "index_white_list_entries_on_school_id"

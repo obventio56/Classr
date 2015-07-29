@@ -3,7 +3,6 @@ class Role < ActiveRecord::Base
   belongs_to :school
   belongs_to :user
   has_one :administered_school, :class_name => 'School', :foreign_key => 'role_id'
-  has_many :created_white_list_entries, :class_name => 'WhiteListEntry', :foreign_key => 'creator_role_id'
   has_many :tests
 
   accepts_nested_attributes_for :user
@@ -18,19 +17,19 @@ class Role < ActiveRecord::Base
 
   def if_principal_has_school
     if self.role_type == 'principal' && self.administered_school == nil
-      errors.add(:role_type, 'A principal must oversee a school.')
+      errors.add(:role_type, 'Principals must oversee a school.')
     end
   end
 
   def role_type_is_white_listed
-    if self.role_type != 'principal' && self.role_type != 'teacher' && self.role_type != 'student' && self.role_type != 'counselor'
-      errors.add(:role_type, self.role_type.to_s + ' is not an allowed account type.')
+    if ['principal','teacher','student'].exclude?(self.role_type)
+      errors.add(:role_type, self.role_type.to_s.capitalize + ' is not an allowed account type.')
     end
   end
 
   def student_visibility_is_school
     if self.role_type == 'student' && self.visibility != 'school'
-      errors.add(:visibility, 'Student account can not be made public')
+      errors.add(:visibility, 'Student account can not be made public. either')
     end
   end
 
@@ -47,7 +46,7 @@ class Role < ActiveRecord::Base
       when 'student' || 'counselor' || 'teacer'
         self.visibility = 'school'
       when 'principal'
-        self.visibility = 'site wide'
+        self.visibility = 'site'
     end
   end
 end

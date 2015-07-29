@@ -1,4 +1,11 @@
 <%= form_for @school do |f| %>
-
-    <%= f.submit "Submit" %>
+    <div id="white_list_entries">
+      <%= f.fields_for :white_list_entries do |builder| %>
+          <%= render 'white_list_entry_fields', f: builder %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add White List Entry', f, :white_list_entries %>
+      </div>
+    </div>
+    <%= f.submit 'Submit' %>
 <% end %>
