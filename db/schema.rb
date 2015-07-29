@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720024039) do
+ActiveRecord::Schema.define(version: 20150722221618) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "role_type"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150720024039) do
     t.integer  "role_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.text     "original_html"
   end
 
   add_index "tests", ["role_id"], name: "index_tests_on_role_id"

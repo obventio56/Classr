@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+
   def new
     @role = Role.new
     if params[:role_type] == 'principal'
@@ -14,7 +15,7 @@ class RolesController < ApplicationController
     if @role.save
       log_in @role.user
       cookies[:current_role_id] = @role.id
-      redirect_to role_destination_path(@role)
+      redirect_to role_path(@role)
     else
       redirect_to new_role_path(role_type: role_params[:role_type])
     end
@@ -26,8 +27,4 @@ class RolesController < ApplicationController
     params.require(:role).permit(:role_type, user_attributes: [:name, :email, :password, :password_confirmation], administered_school_attributes: [:name])
   end
 
-  def correct_role?
-    @role = Role.find(params[:id])
-    redirect_to role_destination_path(current_role) unless @role.current_role?
-  end
 end

@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  before_action :correct_user?,   only: [:edit, :update]
-
   def show
 
   end
@@ -42,8 +40,4 @@ class UsersController < ApplicationController
                                  :password_confirmation)
   end
 
-  def correct_user?
-    @user = User.find(params[:id])
-    redirect_to role_destination_path(current_role) unless @user.current_user?
-  end
 end

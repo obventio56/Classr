@@ -1,26 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-.existingNestedResources .fields {
-    display:none;
-}
-
-.cloneable {
-    display:none;
-}
 *:not(a) {
     transition: color .2s, background-color .2s;
 }
@@ -48,7 +25,7 @@ body {
 
 body {
     font: 16px/1.5em "Roboto", helvetica, arial, verdana, sans-serif;
-    color: rgba(0,0,0, .87);
+    color: rgb(33, 33, 33);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
@@ -139,6 +116,8 @@ a:hover {
 .panel-body {
     padding-top:0;
 }
+
+
 
 /* Paper Element Bug Fixes - 'Nuff Said */
 
@@ -416,8 +395,8 @@ paper-slider #sliderBar  {
 }
 
 input.form-control {
-    color: rgba(0,0,0, .87);
-    border-bottom: 2px solid rgba(0,0,0, .87);
+    color: rgb(33, 33, 33);
+    border-bottom: 2px solid rgb(33, 33, 33);
 }
 
 input.form-control:focus {
@@ -434,23 +413,11 @@ textarea.form-control:focus {
     box-shadow: 0 0 8px rgba(187, 222, 251, .6);
 }
 textarea.form-control {
-    border:1px solid rgba(0,0,0, 0.87);
-    border-bottom: 2px solid rgba(0,0,0, 0.87);
+    border:none;
+    border-bottom: 2px solid rgb(33, 33, 33);
     padding:15px;
-    max-width: 100%;
-}
-div.container-fluid {
-    margin:15px 0;
-}
-.tile {
-    border-bottom:1px solid rgba(0,0,0,.12);
-    padding:5px;
-    background-color:white;
 }
 
-.tile-heading, .tile-body {
-    padding:15px 15px 30px 15px;
-}
 /* Progress Bars */
 
 
@@ -472,7 +439,7 @@ div.container-fluid {
 /* Labels. Those Button Badge Thingies */
 
 .control-label {
-    color: rgba(0,0,0, .87);
+    color: rgb(33, 33, 33);
 }
 
 /* Contextless Color Classes - Will guess the desired color styling based on the element. */
@@ -712,7 +679,7 @@ input.form-control.accent:focus, .input-group.accent input.form-control:focus, .
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(255, 255, 00, .6);
 }
 
-.progress-bar.accent.dark {
+ .progress-bar.accent.dark {
     color: #FFEA00;
 }
 
@@ -766,7 +733,7 @@ input.form-control.accent.dark:focus, .input-group.accent.dark input.form-contro
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(255, 234, 00, .6);
 }
 
-.progress-bar.accent.light {
+ .progress-bar.accent.light {
     color: #FFFF8D;
 }
 
@@ -1219,7 +1186,7 @@ paper-slider.disabled {
 }
 
 .primary {
-    color: rgba(0,0,0, .87);
+    color: rgb(33, 33, 33);
 }
 
 

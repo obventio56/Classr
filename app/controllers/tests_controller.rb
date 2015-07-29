@@ -10,6 +10,7 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.new(test_params)
+    @test.html = format_html(@test.original_html)
     if @test.save
       redirect_to test_path(@test)
     end
@@ -29,6 +30,6 @@ class TestsController < ApplicationController
   private
 
   def test_params
-    params.require(:test).permit(:html, :questions_and_answers)
+    params.require(:test).permit(:original_html, :questions_and_answers)
   end
 end

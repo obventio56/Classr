@@ -1,4 +1,5 @@
 class Role < ActiveRecord::Base
+
   belongs_to :school
   belongs_to :user
   has_one :administered_school, :class_name => 'School', :foreign_key => 'role_id'
@@ -7,7 +8,6 @@ class Role < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :administered_school
-
 
   before_create :set_default_visiblity
   after_create :assign_administered_school_to_school_if_principal
@@ -40,13 +40,6 @@ class Role < ActiveRecord::Base
       #TO DO - Is this necessary? Will it severely slow things down?
       self.save
     end
-  end
-
-  def self.current_role?
-    if self.id == current_role.id
-      return true
-    end
-    return false
   end
 
   def set_default_visiblity
