@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 20150722221618) do
   create_table "white_list_entries", force: :cascade do |t|
     t.string   "entry"
     t.string   "entry_type"
-    t.string   "for_account_type"
+    t.string   "for_role_type"
     t.integer  "school_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "white_list_entries", ["school_id"], name: "index_white_list_entries_on_school_id"

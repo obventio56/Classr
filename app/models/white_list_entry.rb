@@ -6,6 +6,7 @@ class WhiteListEntry < ActiveRecord::Base
 
   validates :entry, presence: true
   validates :entry_type, presence: true
+  validates :for_role_type, presence: true
   validates :school_id, presence: true
 
   validate :if_entry_is_domain_then_entry_is_unique

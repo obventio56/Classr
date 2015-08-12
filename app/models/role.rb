@@ -8,12 +8,12 @@ class Role < ActiveRecord::Base
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :administered_school
 
+  before_validation :set_administered_school_principal
   before_create :set_default_visiblity
   after_create :assign_administered_school_to_school_if_principal
 
   validate :if_principal_has_school
   validate :role_type_is_white_listed
-  validate :student_visibility_is_school
 
   def if_principal_has_school
     if self.role_type == 'principal' && self.administered_school == nil
@@ -24,12 +24,6 @@ class Role < ActiveRecord::Base
   def role_type_is_white_listed
     if ['principal','teacher','student'].exclude?(self.role_type)
       errors.add(:role_type, self.role_type.to_s.capitalize + ' is not an allowed account type.')
-    end
-  end
-
-  def student_visibility_is_school
-    if self.role_type == 'student' && self.visibility != 'school'
-      errors.add(:visibility, 'Student account can not be made public. either')
     end
   end
 
@@ -49,4 +43,11 @@ class Role < ActiveRecord::Base
         self.visibility = 'site'
     end
   end
+
+  def set_administered_school_principal
+    if self.role_type == 'principal'
+      self.administered_school.principal = self
+    end
+  end
+
 end

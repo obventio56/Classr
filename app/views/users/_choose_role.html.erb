@@ -1,5 +1,7 @@
 <%= form_for @user do |f| %>
-
-    <%= render partial: 'fields_for_existing_roles', collection: @roles %>
+    <% #here to fill required user param. Sort of messy...%>
+    <%= f.hidden_field :id%>
+    <%= render partial: 'fields_for_existing_roles', collection: @user.roles, as: :role, locals: {:f => f}%>
+    <%= f.submit "Submit"%>
 
 <% end %>
