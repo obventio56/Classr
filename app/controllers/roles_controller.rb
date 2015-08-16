@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
 
-  before_action :is_current_role_or_role_is_public
+  before_action :is_current_role_or_role_is_public, except: [:new, :create]
   before_action :authenticate, except: [:new, :create, :edit, :update]
   before_action :authenticate_update, only: [:edit, :update]
 

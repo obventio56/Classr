@@ -11,7 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722221618) do
+ActiveRecord::Schema.define(version: 20150815161012) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "creator_id"
+    t.string   "status"
+    t.string   "visibility"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "courses", ["creator_id"], name: "index_courses_on_creator_id"
+
+  create_table "group_roles", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_roles", ["group_id"], name: "index_group_roles_on_group_id"
+  add_index "group_roles", ["role_id"], name: "index_group_roles_on_role_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "groups", ["course_id"], name: "index_groups_on_course_id"
+  add_index "groups", ["teacher_id"], name: "index_groups_on_teacher_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "role_type"

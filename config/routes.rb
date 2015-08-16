@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :schools
   resources :roles
   resources :tests
+  resources :courses
+  resources :groups
 end
