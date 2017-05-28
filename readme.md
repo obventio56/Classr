@@ -1,6 +1,6 @@
 Okay, rails says README.rdoc is for config info, so I'll leave that be and turn
 this into a todo list. Which really should be todo.txt, but this one is 
-displayed by default. -anthony
+displayed by default.
 
 TODO:
 
