@@ -1,6 +1,6 @@
 == README
 
-Live at <a href="http://classr.xyz">Classr.xyz</a>
+Live at: classr.xyz
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
